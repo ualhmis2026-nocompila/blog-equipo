@@ -24,8 +24,8 @@ description: >- # this means to ignore newlines until "baseurl:"
  Puede que nuestro código no compile a la primera, 
  pero nuestras ideas sí. 
  Sobreviviendo a HMIS, un pull request a la vez.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/blog-equipo" # the subpath of your site, e.g. /blog
+url: "https://ualhmis2026-nocompila.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 
