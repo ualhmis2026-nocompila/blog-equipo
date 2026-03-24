@@ -2,16 +2,22 @@
 layout: home
 ---
 
-# 💥 Error 500: ¡Bienvenidos a No Compila!
+![Banner No Compila](https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80)
 
-Puede que nuestro código no compile a la primera, pero nuestras ideas sí. Sobreviviendo a la asignatura, un pull request a la vez.
+> **Puede que nuestro código no compile a la primera, pero nuestras ideas sí.** 💡
+> Sobreviviendo a la asignatura HMIS, un pull request a la vez. 
+
+---
 
 ## 🧑‍💻 Conoce a los desarrolladores:
-* [Perfil de Ángelillo](/angelillo/)
+* 👨‍💻 [Perfil de Angelillo](/angelillo/) 
 
-## 📧 Contacto:
-¿Tienes alguna duda o has encontrado un bug en nuestro blog? [Escríbenos desde nuestro formulario de contacto](/contacto/).
 
 <br>
+
+## 📧 ¿Encontraste un bug?
+[Escríbenos desde nuestro formulario de contacto](/contacto/) y lo arreglaremos para el próximo sprint.
+
+---
 
 ## 📝 Últimas Entradas de la Bitácora:
