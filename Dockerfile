@@ -17,7 +17,7 @@ RUN bundle install
 COPY . .
 
 # Compilamos el sitio (esto crea una carpeta oculta llamada _site con tu HTML)
-RUN bundle exec jekyll build
+RUN JEKYLL_ENV=production bundle exec jekyll build --baseurl "" --url "https://hmis-dcf313-cadqgqc7g8gnbpbn.norwayeast-01.azurewebsites.net"
 
 # ETAPA 2: Producción (Usamos Nginx para servir el HTML puro)
 FROM nginx:alpine
