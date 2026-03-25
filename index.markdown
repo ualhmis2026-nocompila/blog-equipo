@@ -11,6 +11,9 @@ layout: home
 
 ## 🧑‍💻 Conoce a los desarrolladores:
 * 👨‍💻 [Perfil de Angelillo]({{ site.baseurl }}/angelillo/) 
+* 🐒 [Perfil de David]({{ site.baseurl }}/david/)
+
+---
 
 
 <br>
