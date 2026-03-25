@@ -5,7 +5,7 @@ permalink: /david/
 ---
 
 <div align="center">
-  <img src="images/D-KHwCnWkAE1C8v.png" alt="Avatar de David" width="300" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+  <img src="/images/D-KHwCnWkAE1C8v.png" alt="Avatar de David" width="300" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 </div>
 
 <br>
