@@ -1,0 +1,43 @@
+name: Compilar y Desplegar Jekyll en Azure
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write # Permiso estricto para guardar la imagen en GitHub
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Iniciar sesión en GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Construir y subir la imagen Docker
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
+      - name: Desplegar en Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'NOMBRE_DE_TU_APP_EN_AZURE' # REEMPLAZA ESTO por el nombre real de tu recurso en Azure
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          images: '${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest'
