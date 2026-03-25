@@ -10,13 +10,13 @@ layout: home
 ---
 
 ## 🧑‍💻 Conoce a los desarrolladores:
-* 👨‍💻 [Perfil de Angelillo](/angelillo/) 
+* 👨‍💻 [Perfil de Angelillo]({{ site.baseurl }}/angelillo/) 
 
 
 <br>
 
 ## 📧 ¿Encontraste un bug?
-[Escríbenos desde nuestro formulario de contacto](/contacto/) y lo arreglaremos para el próximo sprint.
+[Escríbenos desde nuestro formulario de contacto]({{ site.baseurl }}/contacto/) y lo arreglaremos para el próximo sprint.
 
 ---
 
