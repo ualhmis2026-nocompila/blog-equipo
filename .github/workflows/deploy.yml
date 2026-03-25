@@ -38,6 +38,6 @@ jobs:
       - name: Desplegar en Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'NOMBRE_DE_TU_APP_EN_AZURE' # REEMPLAZA ESTO por el nombre real de tu recurso en Azure
+          app-name: 'hmis-dcf313'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           images: '${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest'
