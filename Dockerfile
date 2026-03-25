@@ -16,8 +16,12 @@ RUN bundle install
 # Copiamos el resto de los archivos de tu página
 COPY . .
 
-# Compilamos el sitio (esto crea una carpeta oculta llamada _site con tu HTML)
-RUN JEKYLL_ENV=production bundle exec jekyll build --baseurl "" --url "https://hmis-dcf313-cadqgqc7g8gnbpbn.norwayeast-01.azurewebsites.net"
+# 1. Creamos un archivo de configuración temporal exclusivo para Azure
+RUN echo 'url: "https://hmis-dcf313-cadqgqc7g8gnbpbn.norwayeast-01.azurewebsites.net"' > _config.azure.yml
+RUN echo 'baseurl: ""' >> _config.azure.yml
+
+# 2. Compilamos fusionando tu configuración original con la nueva
+RUN JEKYLL_ENV=production bundle exec jekyll build --config _config.yml,_config.azure.yml
 
 # ETAPA 2: Producción (Usamos Nginx para servir el HTML puro)
 FROM nginx:alpine
