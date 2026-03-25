@@ -1,0 +1,63 @@
+---
+layout: post
+title: "Como implementar 'Factory Method' para programación orientada a objetos"
+date: 2026-03-24 21:00:00 +0100
+categories: jekyll update
+author: David
+---
+
+Seguro que te ha pasado: estás escribiendo código y terminas con un bloque de `if-else` o un `switch` interminable solo para decidir qué clase instanciar. Aunque parece la solución más rápida en el momento, este enfoque suele pasarnos factura cuando el proyecto crece. Aquí es donde entra el **Factory Method**, un patrón de diseño creacional que nos ayuda a limpiar esa lógica y hacer que nuestro sistema sea mucho más escalable.
+
+### El problema de instanciar a mano
+
+El núcleo del Factory Method es proporcionar una interfaz para crear objetos en una superclase, pero dejando que sean las subclases las que decidan qué tipo de objeto crear. En lugar de acoplar tu código a clases concretas mediante el operador `new`, delegas esa responsabilidad a un "método fábrica". Esto es especialmente útil cuando tu código no sabe de antemano con qué tipos exactos de objetos tendrá que trabajar.
+
+Para implementarlo, necesitamos definir un **Producto** (la interfaz común para todos los objetos que crearemos) y un **Creador** (la clase que contiene la lógica de negocio y declara el método fábrica). Los **Creadores Concretos** serán los encargados de sobrescribir ese método para devolver la instancia específica que necesitemos en cada caso, permitiendo que el sistema crezca sin necesidad de modificar el código base cada vez que aparece una nueva variante.
+
+### Un ejemplo práctico: Logística de envíos
+
+Imagina que estamos desarrollando un sistema de logística. Hoy solo enviamos paquetes por tierra mediante camiones, pero mañana podríamos necesitar barcos o incluso drones. En lugar de reescribir nuestra lógica principal cada vez que añadimos un transporte, usamos el Factory Method para mantener la flexibilidad.
+
+```typescript
+// Primero, definimos la interfaz común para nuestros transportes
+interface Transport {
+    deliver(): string;
+}
+
+// Creamos los productos concretos
+class Truck implements Transport {
+    deliver() { return "Entrega por tierra en caja de cartón."; }
+}
+
+class Ship implements Transport {
+    deliver() { return "Entrega por mar en contenedor de carga."; }
+}
+
+// La clase Creadora define el Factory Method
+abstract class Logistics {
+    // Este es nuestro método fábrica
+    public abstract createTransport(): Transport;
+
+    public planDelivery(): string {
+        // Usamos el método fábrica en lugar de instanciar directamente
+        const transport = this.createTransport();
+        return `Logística: ${transport.deliver()}`;
+    }
+}
+
+// Implementaciones específicas del creador
+class RoadLogistics extends Logistics {
+    public createTransport(): Transport { return new Truck(); }
+}
+
+class SeaLogistics extends Logistics {
+    public createTransport(): Transport { return new Ship(); }
+}
+
+// Uso del código
+const appLogistics = new RoadLogistics();
+console.log(appLogistics.planDelivery());
+
+Al estructurar el código de esta manera, nuestra aplicación principal puede operar con cualquier subclase de Logistics sin tener que preocuparse por si el paquete viaja en un camión, en un buque o en cualquier transporte que decidamos integrar en el futuro. Si el día de mañana el negocio escala y necesitas añadir transporte aéreo, bastaría con crear las clases AirLogistics y Plane sin necesidad de modificar ni una sola línea de la lógica de envíos que ya tienes funcionando.
+
+En realidad, implementar el Factory Method no se trata simplemente de «mover el new de sitio»; es una forma de abrazar el Principio de Responsabilidad Única y preparar tu arquitectura para el cambio constante. Al separar por completo la construcción del objeto de su uso, consigues un código mucho más robusto, mantenible y, sobre todo, fácil de testear. Es uno de esos detalles técnicos que tú y tu equipo agradecerán enormemente cuando el proyecto empiece a escalar de verdad y las piezas encajen sin ninguna fricción.
